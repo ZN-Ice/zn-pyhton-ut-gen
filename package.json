@@ -16,6 +16,10 @@
       {
         "command": "zn-pyhton-ut-gen.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "zn-pyhton-ut-gen.testCommand",
+        "title": "测试命令"
       }
     ]
   },

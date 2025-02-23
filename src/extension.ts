@@ -5,21 +5,26 @@ import * as vscode from 'vscode';
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+	console.log('插件已激活');
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "zn-pyhton-ut-gen" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('zn-pyhton-ut-gen.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('这是我的第一个 VS Code 插件!');
+	// 注册第一个命令
+	const helloWorld = vscode.commands.registerCommand('zn-pyhton-ut-gen.helloWorld', () => {
+		vscode.window.showInformationMessage('Hello World!');
 	});
 
-	context.subscriptions.push(disposable);
+	// 注册第二个命令
+	const testCommand = vscode.commands.registerCommand('zn-pyhton-ut-gen.testCommand', () => {
+		// 获取当前编辑器
+		const editor = vscode.window.activeTextEditor;
+		if (editor) {
+			// 获取选中的文本
+			const selection = editor.selection;
+			const text = editor.document.getText(selection);
+			vscode.window.showInformationMessage(`选中的文本是: ${text}`);
+		}
+	});
+
+	context.subscriptions.push(helloWorld, testCommand);
 }
 
 // This method is called when your extension is deactivated
